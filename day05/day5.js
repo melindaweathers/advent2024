@@ -6,10 +6,7 @@ function parseFile(filename) {
   let ruleMap = {};
   for (let rule of rulesData.split("\n")) {
     let [leader, follower] = rule.split("|");
-    let followers = ruleMap[leader];
-    ruleMap[leader] = followers
-      ? followers.concat(Number(follower))
-      : [Number(follower)];
+    ruleMap[leader] = (ruleMap[leader] || []).concat(Number(follower));
   }
   let sections = sectionsData
     .split("\n")
