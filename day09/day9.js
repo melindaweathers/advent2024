@@ -76,14 +76,15 @@ function part2(filename) {
         //move this block if we can
         let newPos = findNewFilePos(data, blockSize, r);
         if (newPos >= 0) {
-          console.log(`${blockSize} blocks id ${id} from ${r} to ${newPos}`);
+          // console.log(`${blockSize} blocks id ${id} from ${r} to ${newPos}`);
           for (let j = newPos; j < newPos + blockSize; j++) data[j] = id;
           for (let k = r + 1; k <= r + blockSize; k++) data[k] = ".";
         }
         blockSize = 0;
         // console.log(data.join(""));
+        id--;
       }
-      if (data[r] == id - 1) {
+      if (data[r] == id) {
         id = data[r];
         blockSize = 1;
       }
@@ -96,10 +97,12 @@ function part2(filename) {
 // console.log(expand("12345"));
 // console.log(expand("2333133121414131402"));
 
+// 2333133121414131402
+// 3131411113122010103
 console.log(part1("input-test.txt"));
 console.log(part1("input.txt"));
 
-// console.log(part2("input-test.txt"));
+console.log(part2("input-test.txt"));
 console.log(part2("input.txt"));
 
 // 6363268359248 too high
